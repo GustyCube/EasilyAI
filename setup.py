@@ -1,8 +1,12 @@
 from setuptools import setup, find_packages
+from pathlib import Path
+this_directory = Path(__file__).parent
+
+long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="EasilyAI",
-    version="0.1.1",
+    version="0.1.2",
     description="A library that simplifies the usage of AI!",
     author="GustyCube",
     author_email="gc@gustycube.xyz",
@@ -18,4 +22,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.7',
+    long_description=long_description,
+    long_description_content_type='text/markdown'
 )
