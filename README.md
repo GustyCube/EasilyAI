@@ -1,4 +1,4 @@
-# EasyAI 🚀
+# EasyAI - Beta
 
 **EasyAI** is a Python library that simplifies AI app development by integrating popular AI services like **OpenAI** and **Ollama**. It provides a clean, unified interface for text generation, image generation, and text-to-speech (TTS) tasks.
 
