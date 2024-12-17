@@ -78,7 +78,7 @@ Chain multiple tasks (text generation, image generation, and TTS):
 
 ```python
 # Create a pipeline
-pipeline = easilyai.easilyaiPipeline(app)
+pipeline = easilyai.EasilyAIPipeline(app)
 
 # Add tasks
 pipeline.add_task("generate_text", "Write a poem about AI and nature.")
