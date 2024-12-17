@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="easyai",
-    version="0.1.0",
+    name="EasilyAI",
+    version="0.1.1",
     description="A library that simplifies the usage of AI!",
     author="GustyCube",
     author_email="gc@gustycube.xyz",
-    url="https://github.com/GustyCube/EasyAI",
+    url="https://github.com/GustyCube/EasilyAI",
     packages=find_packages(),
     install_requires=[
         "openai>=1.0.0",

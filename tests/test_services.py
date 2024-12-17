@@ -1,6 +1,6 @@
 import unittest
-from easyai.services.openai_service import OpenAIService
-from easyai.services.ollama_service import OllamaService
+from easilyai.services.openai_service import OpenAIService
+from easilyai.services.ollama_service import OllamaService
 
 class TestOpenAIService(unittest.TestCase):
     def test_openai_init(self):

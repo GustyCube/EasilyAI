@@ -1,6 +1,6 @@
 import sys
 
-class EasyAIError(Exception):
+class EasilyAIError(Exception):
     """Base class for all EasyAI exceptions."""
     pass
 
@@ -13,42 +13,42 @@ class Color:
     BLUE = "\033[94m"
     CYAN = "\033[96m"
 
-class AuthenticationError(EasyAIError):
+class AuthenticationError(EasilyAIError):
     def __init__(self, message="Authentication failed!"):
         super().__init__(f"{Color.RED}🔑 {message} {Color.RESET}")
 
-class RateLimitError(EasyAIError):
+class RateLimitError(EasilyAIError):
     def __init__(self, message="API rate limit exceeded! Please slow down."):
         super().__init__(f"{Color.YELLOW}⏳ {message} {Color.RESET}")
 
-class InvalidRequestError(EasyAIError):
+class InvalidRequestError(EasilyAIError):
     def __init__(self, message="Invalid request!"):
         super().__init__(f"{Color.RED}🚫 {message} {Color.RESET}")
 
-class APIConnectionError(EasyAIError):
+class APIConnectionError(EasilyAIError):
     def __init__(self, message="Unable to connect to the API."):
         super().__init__(f"{Color.CYAN}🌐 {message} {Color.RESET}")
 
-class NotFoundError(EasyAIError):
+class NotFoundError(EasilyAIError):
     def __init__(self, message="The requested resource was not found!"):
         super().__init__(f"{Color.YELLOW}🔍 {message} {Color.RESET}")
 
-class ServerError(EasyAIError):
+class ServerError(EasilyAIError):
     def __init__(self, message="Server encountered an error!"):
         super().__init__(f"{Color.RED}💥 {message} {Color.RESET}")
 
-class MissingAPIKeyError(EasyAIError):
+class MissingAPIKeyError(EasilyAIError):
     def __init__(self, message="No API key provided!"):
         super().__init__(f"{Color.RED}🔐 {message} {Color.RESET}")
 
-class UnsupportedServiceError(EasyAIError):
+class UnsupportedServiceError(EasilyAIError):
     def __init__(self, service_name):
         super().__init__(
             f"{Color.BLUE}❌ Unsupported service '{service_name}'! Use 'openai', 'ollama', or a custom registered service. "
             f"Refer to the EasyAI documentation for more information.{Color.RESET}"
         )
 
-class NotImplementedError(EasyAIError):
+class NotImplementedError(EasilyAIError):
     def __init__(self, feature="This feature"):
         message = f"{Color.CYAN}🛠️ {feature} is not yet implemented! Stay tuned for future updates.{Color.RESET}"
         print(message)

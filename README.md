@@ -1,6 +1,6 @@
-# EasyAI 🚀
+# EasilyAI - Beta
 
-**EasyAI** is a Python library that simplifies AI app development by integrating popular AI services like **OpenAI** and **Ollama**. It provides a clean, unified interface for text generation, image generation, and text-to-speech (TTS) tasks.
+**EasilyAI** is a Python library that simplifies AI app development by integrating popular AI services like **OpenAI** and **Ollama**. It provides a clean, unified interface for text generation, image generation, and text-to-speech (TTS) tasks.
 
 ---
 
@@ -18,7 +18,7 @@
 Install the library via pip:
 
 ```bash
-pip install easyai
+pip install easilyai
 ```
 
 ---
@@ -30,10 +30,10 @@ pip install easyai
 Create an app for OpenAI:
 
 ```python
-import easyai
+import easilyai
 
 # Initialize an OpenAI App
-app = easyai.create_app(
+app = easilyai.create_app(
     name="my_ai_app",
     service="openai",
     apikey="YOUR_OPENAI_API_KEY",
@@ -53,7 +53,7 @@ Create a dedicated TTS app and specify the model and voice:
 
 ```python
 # Initialize a TTS App
-tts_app = easyai.create_tts_app(
+tts_app = easilyai.create_tts_app(
     name="my_tts_app",
     service="openai",
     apikey="YOUR_OPENAI_API_KEY",
@@ -78,7 +78,7 @@ Chain multiple tasks (text generation, image generation, and TTS):
 
 ```python
 # Create a pipeline
-pipeline = easyai.EasyAIPipeline(app)
+pipeline = easilyai.EasilyAIPipeline(app)
 
 # Add tasks
 pipeline.add_task("generate_text", "Write a poem about AI and nature.")
@@ -97,10 +97,10 @@ for task_result in results:
 
 ### 4. Register Custom AI Services
 
-Integrate your own AI models into EasyAI:
+Integrate your own AI models into EasilyAI:
 
 ```python
-from easyai.custom_ai import CustomAIService, register_custom_ai
+from easilyai.custom_ai import CustomAIService, register_custom_ai
 
 # Define a custom AI service
 class MyCustomAI(CustomAIService):
@@ -114,7 +114,7 @@ class MyCustomAI(CustomAIService):
 register_custom_ai("my_custom_ai", MyCustomAI)
 
 # Use the custom AI
-custom_app = easyai.create_app(name="custom_app", service="my_custom_ai", model="v1")
+custom_app = easilyai.create_app(name="custom_app", service="my_custom_ai", model="v1")
 print(custom_app.request("What is 2 + 2?"))
 ```
 
@@ -137,7 +137,7 @@ print(custom_app.request("What is 2 + 2?"))
 
 ## Error Handling
 
-EasyAI includes robust error handling with informative, emoji-coded messages.
+EasilyAI includes robust error handling with informative, emoji-coded messages.
 
 Examples:
 - 🔐 **Missing API Key**: "No API key provided! Add your API key to initialize the service."
@@ -173,7 +173,7 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ## Links
 
 - Documentation: [coming soon]
-- GitHub Repository: [your GitHub link here]
+- GitHub Repository: https://github.com/GustyCube/EasilyAI
 
 ---
 

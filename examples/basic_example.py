@@ -1,5 +1,5 @@
-import easyai
-from easyai.custom_ai import CustomAIService
+import easilyai
+from easilyai.custom_ai import CustomAIService
 
 # Register a Custom AI
 class MyCustomAI(CustomAIService):
@@ -9,10 +9,10 @@ class MyCustomAI(CustomAIService):
     def text_to_speech(self, text, **kwargs):
         return f"Custom TTS Output: {text}"
 
-easyai.register_custom_ai("my_custom_ai", MyCustomAI)
+easilyai.register_custom_ai("my_custom_ai", MyCustomAI)
 
 # Create OpenAI App
-app = easyai.create_app(
+app = easilyai.create_app(
     name="openai_app",
     service="openai",
     apikey="YOUR_OPENAI_API_KEY",
@@ -20,7 +20,7 @@ app = easyai.create_app(
 )
 
 # Run a pipeline
-pipeline = easyai.EasyAIPipeline(app)
+pipeline = easilyai.EasyAIPipeline(app)
 pipeline.add_task("generate_text", "Tell me a story about a talking car.")
 pipeline.add_task("generate_image", "A red futuristic talking car with glowing headlights.")
 pipeline.add_task("text_to_speech", "Here is a talking car in a futuristic world!")
@@ -30,7 +30,7 @@ for task_result in results:
     print(f"Task: {task_result['task']}\nResult: {task_result['result']}\n")
 
 # Run a TTS-specific app with OpenAI
-tts_app = easyai.create_tts_app(
+tts_app = easilyai.create_tts_app(
     name="tts_app",
     service="openai",
     apikey="YOUR_OPENAI_API_KEY",
@@ -47,7 +47,7 @@ tts_file = tts_app.request_tts(
 print(f"TTS output saved to: {tts_file}")
 
 # Example using Custom AI for TTS
-custom_tts_app = easyai.create_tts_app(
+custom_tts_app = easilyai.create_tts_app(
     name="custom_tts",
     service="my_custom_ai",
     model="v1"

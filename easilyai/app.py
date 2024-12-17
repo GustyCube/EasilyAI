@@ -1,7 +1,7 @@
-from easyai.services.openai_service import OpenAIService
-from easyai.services.ollama_service import OllamaService
-from easyai.custom_ai import CustomAIService
-from easyai.exceptions import UnsupportedServiceError, NotImplementedError
+from easilyai.services.openai_service import OpenAIService
+from easilyai.services.ollama_service import OllamaService
+from easilyai.custom_ai import CustomAIService
+from easilyai.exceptions import UnsupportedServiceError, NotImplementedError
 
 _registered_custom_ais = {}
 
