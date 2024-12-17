@@ -1,4 +1,11 @@
-# EasilyAI - Beta
+<div align="center">
+  <h1>EasilyAI</h1>
+  <p>
+    <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/v/easilyai.svg" alt="PyPI"></a>
+    <a href="tox.ini"><img src="https://img.shields.io/pypi/pyversions/easilyai" alt="Supported Python Versions"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/GustyCube/EasilyAI" alt="License"></a>
+  </p>
+</div>
 
 **EasilyAI** is a Python library that simplifies AI app development by integrating popular AI services like **OpenAI** and **Ollama**. It provides a clean, unified interface for text generation, image generation, and text-to-speech (TTS) tasks.
 
