@@ -173,7 +173,7 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ## Links
 
 - Documentation: [coming soon]
-- GitHub Repository: [your GitHub link here]
+- GitHub Repository: https://github.com/GustyCube/EasyAI
 
 ---
 
