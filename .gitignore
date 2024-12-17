@@ -10,3 +10,4 @@ dist/
 .DS_Store
 easyai_env/
 docs/node_modules/
+easyai.egg-info/
