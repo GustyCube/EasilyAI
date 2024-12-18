@@ -130,12 +130,12 @@ print(custom_app.request("What is 2 + 2?"))
 ## Supported Services
 
 1. **OpenAI**
-   - Text Generation (ChatGPT models like `gpt-4`)
+   - Text Generation (ChatGPT models like `gpt-4o`)
    - Image Generation (`dall-e-3`)
    - Text-to-Speech (`tts-1`, voices: `onyx`, `alloy`, etc.)
 
 2. **Ollama**
-   - Local LLM text generation (e.g., `llama2`).
+   - Local LLM text generation (e.g., `llama3.1`).
 
 3. **Custom AI**
    - Extend functionality by registering your own AI services.
