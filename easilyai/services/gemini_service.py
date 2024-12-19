@@ -20,6 +20,6 @@ class GeminiService:
             return response.text
         except Exception as e:
             raise ServerError(
-                f"Unkown error occurred! 😱 Please try again later or look at the EasilyAi Docs. Error: {e}"
+                f"Unknown error occurred! Please try again later or look at the EasilyAi Docs. Error: {e}"
             )
         
