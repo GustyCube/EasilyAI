@@ -11,3 +11,4 @@ dist/
 easyai_env/
 docs/node_modules/
 easyai.egg-info/
+.venv/
