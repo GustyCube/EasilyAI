@@ -17,7 +17,7 @@ class GeminiService:
     def generate_text(self, prompt):
         try:
             response = self.model.generate_content(prompt)
-            return response['choices'][0]['message']['content']
+            return response.text
         except Exception as e:
             raise ServerError(
                 f"Unkown error occurred! 😱 Please try again later or look at the EasilyAi Docs. Error: {e}"
