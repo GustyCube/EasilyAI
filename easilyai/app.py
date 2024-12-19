@@ -1,5 +1,6 @@
 from easilyai.services.openai_service import OpenAIService
 from easilyai.services.ollama_service import OllamaService
+from easilyai.services.gemini_service import GeminiService
 from easilyai.custom_ai import CustomAIService
 from easilyai.exceptions import UnsupportedServiceError, NotImplementedError
 
@@ -16,6 +17,8 @@ class EasyAIApp:
             self.client = OpenAIService(apikey, model)
         elif service == "ollama":
             self.client = OllamaService(model)
+        elif service == "gemini":
+            self.client = GeminiService(apikey, model)
         elif service in _registered_custom_ais:
             self.client = _registered_custom_ais[service](model, apikey)
         else:

@@ -1,5 +1,5 @@
 import requests
-from easyai.exceptions import (
+from easilyai.exceptions import (
     APIConnectionError, InvalidRequestError, NotFoundError,
     ServerError, MissingAPIKeyError, NotImplementedError
 )

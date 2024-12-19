@@ -15,6 +15,7 @@ setup(
     install_requires=[
         "openai>=1.0.0",
         "requests>=2.0.0",
+        "google-generativeai>=0.8.3"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
