@@ -1,5 +1,5 @@
 import openai
-from easyai.exceptions import (
+from easilyai.exceptions import (
     AuthenticationError, RateLimitError, InvalidRequestError,
     APIConnectionError, NotFoundError, ServerError, MissingAPIKeyError
 )
