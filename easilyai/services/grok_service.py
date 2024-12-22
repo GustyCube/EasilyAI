@@ -1,4 +1,3 @@
-import os
 import openai
 from openai import OpenAI
 from easilyai.exceptions import (
