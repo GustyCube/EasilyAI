@@ -21,7 +21,7 @@ class GrokService:
     def generate_text(self, prompt):
         try:
             response = self.client.chat.completions.create(
-                model="grok-2-1212",
+                model=self.model,
                 messages=[
                     {
                         "role": "user",
