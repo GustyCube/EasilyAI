@@ -1,7 +1,10 @@
 import os
+import openai
 from openai import OpenAI
-from easilyai.exceptions import MissingAPIKeyError, ServerError
-
+from easilyai.exceptions import (
+    AuthenticationError, RateLimitError, InvalidRequestError,
+    APIConnectionError, NotFoundError, ServerError, MissingAPIKeyError
+)
 
 class GrokService:
     def __init__(self, apikey, model):
@@ -28,7 +31,29 @@ class GrokService:
                 ],
             )
             return response.choices[0].message.content
-        except Exception as e:
+        except openai.error.AuthenticationError:
+            raise AuthenticationError(
+                "Authentication failed! Please check your OpenAI API key and ensure it's correct. "
+                "Refer to the EasyAI documentation for more information."
+            )
+        except openai.error.RateLimitError:
+            raise RateLimitError(
+                "Rate limit exceeded! You've made too many requests in a short period. "
+                "Please wait and try again later. Refer to the EasyAI documentation for more information."
+            )
+        except openai.error.InvalidRequestError as e:
+            raise InvalidRequestError(
+                f"Invalid request! {str(e)}. Please check your request parameters. "
+                "Refer to the EasyAI documentation for more information."
+            )
+        except openai.error.APIConnectionError:
+            raise APIConnectionError(
+                "Connection error! Unable to connect to OpenAI's API. "
+                "Please check your internet connection and try again. "
+                "Refer to the EasyAI documentation for more information."
+            )
+        except openai.error.OpenAIError as e:
             raise ServerError(
-                f"Unknown error occurred! Please try again later or look at the EasilyAi Docs. Error: {e}"
+                f"An error occurred on OpenAI's side: {str(e)}. Please try again later. "
+                "Refer to the EasyAI documentation for more information."
             )
