@@ -18,18 +18,31 @@ class GrokService:
             base_url="https://api.x.ai/v1",
         )
 
-    def generate_text(self, prompt):
+    def generate_text(self, prompt, img_url=None):
         try:
+            content = []
+            if img_url:
+                content.append({
+                    "type": "image_url",
+                    "image_url": {
+                        "url": img_url,
+                        "detail": "high"
+                    }
+                })
+            content.append({
+                "type": "text",
+                "text": prompt
+            })
+
             response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    },
-                ],
+                model = self.model,
+                messages = [{
+                    "role": "user",
+                    "content": content
+                }]
             )
             return response.choices[0].message.content
+        
         except openai.error.AuthenticationError:
             raise AuthenticationError(
                 "Authentication failed! Please check your OpenAI API key and ensure it's correct. "
