@@ -20,7 +20,7 @@ app = easilyai.create_app(
 )
 
 # Run a pipeline
-pipeline = easilyai.EasyAIPipeline(app)
+pipeline = easilyai.EasilyAIPipeline(app)
 pipeline.add_task("generate_text", "Tell me a story about a talking car.")
 pipeline.add_task("generate_image", "A red futuristic talking car with glowing headlights.")
 pipeline.add_task("text_to_speech", "Here is a talking car in a futuristic world!")
