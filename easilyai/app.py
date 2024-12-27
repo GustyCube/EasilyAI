@@ -2,13 +2,14 @@ from easilyai.services.openai_service import OpenAIService
 from easilyai.services.ollama_service import OllamaService
 from easilyai.services.gemini_service import GeminiService
 from easilyai.services.grok_service import GrokService
+from easilyai.services.anthropic_service import AnthropicService
 from easilyai.custom_ai import CustomAIService
 from easilyai.exceptions import UnsupportedServiceError, NotImplementedError
 
 _registered_custom_ais = {}
 
 class EasyAIApp:
-    def __init__(self, name, service, apikey=None, model=None):
+    def __init__(self, name, service, apikey=None, model=None, max_tokens = None):
         self.name = name
         self.service = service
         self.model = model
@@ -22,6 +23,11 @@ class EasyAIApp:
             self.client = GeminiService(apikey, model)
         elif service == "grok":
             self.client = GrokService(apikey, model)
+        elif service == "anthropic":
+            if max_tokens:
+                self.client = AnthropicService(apikey,  model, max_tokens)
+            else:
+                self.client = AnthropicService(apikey, model)
         elif service in _registered_custom_ais:
             self.client = _registered_custom_ais[service](model, apikey)
         else:
