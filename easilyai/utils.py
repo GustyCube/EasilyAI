@@ -12,7 +12,7 @@ def validate_service(service_name):
     """
     Validate the service name input.
     """
-    valid_services = ["openai", "ollama"]
+    valid_services = ["openai", "ollama", "grok", "gemini"]
     if service_name not in valid_services:
         raise ValueError(f"Invalid service: {service_name}. Supported: {valid_services}")
 
