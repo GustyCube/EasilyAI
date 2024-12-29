@@ -6,6 +6,11 @@
     <a href="tox.ini"><img src="https://img.shields.io/pypi/pyversions/easilyai" alt="Supported Python Versions"></a>
     <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/dm/easilyai" alt="PyPI Downloads"></a>
     <a href="LICENSE"><img src="https://img.shields.io/github/license/GustyCube/EasilyAI" alt="License"></a>
+    <a href="https://github.com/GustyCube/EasilAI/actions"><img src="https://github.com/GustyCube/EasilyAI/actions/workflows/python-publish.yml/badge.svg" alt="Build Status"></a>
+    <a href="https://github.com/gustycube/EasilyAI/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/gustycube/easilyai.svg" alt="Contributors">
+</a>
+
 </p>
   </p>
 </div>
