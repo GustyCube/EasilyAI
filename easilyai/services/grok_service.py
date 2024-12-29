@@ -1,6 +1,5 @@
 import os
 import base64
-import openai
 from openai import OpenAI
 from easilyai.exceptions import (
     AuthenticationError,
@@ -11,7 +10,6 @@ from easilyai.exceptions import (
     ServerError,
     MissingAPIKeyError,
 )
-
 
 class GrokService:
     def __init__(self, apikey, model):
@@ -27,49 +25,64 @@ class GrokService:
         )
 
     def encode_image(self, img_url):
-        with open(img_url, "rb") as f:
-            encoded_string = base64.b64encode(f.read()).decode("utf-8")
-        return encoded_string
+        """Encodes an image file into Base64 format if it's a local file."""
+        if os.path.exists(img_url):  # Check if it's a local file
+            with open(img_url, "rb") as f:
+                encoded_string = base64.b64encode(f.read()).decode("utf-8")
+            return f"data:image/jpeg;base64,{encoded_string}"
+        return img_url  # Assume it's already a URL if the file doesn't exist locally
 
     def generate_text(self, prompt, img_url=None):
+        """Generates text using Grok's chat completion API."""
         try:
-            content = []
+            # Prepare messages
+            messages = [{"role": "user", "content": prompt}]
+            
             if img_url:
-                url = img_url
-                if os.path.exists(img_url):
-                    url = f"data:image/jpeg;base64,{self.encode_image(img_url)}"
-                content.append(
-                    {"type": "image_url", "image_url": {"url": url, "detail": "high"}}
-                )
-            content.append({"type": "text", "text": prompt})
+                encoded_img = self.encode_image(img_url)
+                messages = [
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "image_url", "image_url": {"url": encoded_img, "detail": "high"}},
+                            {"type": "text", "text": prompt},
+                        ],
+                    }
+                ]
+
+            # Send request to Grok
             response = self.client.chat.completions.create(
-                model=self.model, messages=[{"role": "user", "content": content}]
+                model=self.model,
+                messages=messages,
+                temperature=0.7,  # Adjust based on your needs
             )
+
+            # Return response content
             return response.choices[0].message.content
 
-        except openai.error.AuthenticationError:
+        except Exception as e:
+            self.handle_exception(e)
+
+    @staticmethod
+    def handle_exception(exception):
+        """Handles known exceptions and raises custom errors."""
+        if isinstance(exception, AuthenticationError):
             raise AuthenticationError(
-                "Authentication failed! Please check your OpenAI API key and ensure it's correct. "
-                "Refer to the EasyAI documentation for more information."
+                "Authentication failed! Please check your Grok API key."
             )
-        except openai.error.RateLimitError:
+        elif isinstance(exception, RateLimitError):
             raise RateLimitError(
-                "Rate limit exceeded! You've made too many requests in a short period. "
-                "Please wait and try again later. Refer to the EasyAI documentation for more information."
+                "Rate limit exceeded! You've made too many requests. Please wait and try again later."
             )
-        except openai.error.InvalidRequestError as e:
+        elif isinstance(exception, InvalidRequestError):
             raise InvalidRequestError(
-                f"Invalid request! {str(e)}. Please check your request parameters. "
-                "Refer to the EasyAI documentation for more information."
+                f"Invalid request! {str(exception)}. Please check your request parameters."
             )
-        except openai.error.APIConnectionError:
+        elif isinstance(exception, APIConnectionError):
             raise APIConnectionError(
-                "Connection error! Unable to connect to OpenAI's API. "
-                "Please check your internet connection and try again. "
-                "Refer to the EasyAI documentation for more information."
+                "Connection error! Unable to connect to Grok's API. Please check your internet connection."
             )
-        except openai.error.OpenAIError as e:
+        else:
             raise ServerError(
-                f"An error occurred on OpenAI's side: {str(e)}. Please try again later. "
-                "Refer to the EasyAI documentation for more information."
+                f"An unknown error occurred while using Grok's API: {str(exception)}"
             )
