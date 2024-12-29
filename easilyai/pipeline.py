@@ -17,7 +17,6 @@ class EasilyAIPipeline:
             for key, value in kwargs.items():
                 task_data[key] = value
             self.tasks.append({"type": task_type, "data": task_data})
-        print(self.tasks)
 
     def run(self):
         """
