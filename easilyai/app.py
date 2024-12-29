@@ -29,13 +29,25 @@ class EasyAIApp:
                 f"Unsupported service '{service}'! Use 'openai', 'ollama', or a registered custom service. "
                 "Refer to the Easy ::contentReference[oaicite:0]{index=0}")
     
-    def request(self, task):
-        if "image" in task.lower():
+    def request(self, task_type, task):
+        # Instead of checking if the task contains "image" or "speech", we should 
+        # check if the task_type is "generate_image" or "text_to_speech"
+        if task_type == "generate_text":
+            # If the task is a dictionary, it contains both prompt and image_url
+            # Currently, should only work with Grok, but need to add support for other services
+            if isinstance(task, dict):
+                prompt = task["data"]
+                img_url = task.get("image_url")
+                return self.client.generate_text(prompt, img_url)
+            else:
+                # If the task is a string, it contains only the prompt, works for all services
+                return self.client.generate_text(task)
+        elif task_type == "generate_image":
             return self.client.generate_image(task)
-        elif "speech" in task.lower() or "convert text to speech" in task.lower():
+        elif task_type == "text_to_speech":
             return self.client.text_to_speech(task)
         else:
-            return self.client.generate_text(task)
+            raise ValueError(f"Unsupported task type: {task_type}")
 
 class EasyAITTSApp:
     def __init__(self, name, service, apikey=None, model=None):
