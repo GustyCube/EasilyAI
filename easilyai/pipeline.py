@@ -31,7 +31,7 @@ class EasilyAIPipeline:
             print(f"Running Task {i + 1}: {task_type}")
 
             if task_type == "generate_text":
-                result = self.app.request(data)
+                result = self.app.request(task_type, data)
             elif task_type == "generate_image":
                 result = self.app.request(f"Generate an image: {data}")
             elif task_type == "text_to_speech":
