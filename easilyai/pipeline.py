@@ -3,7 +3,7 @@ class EasilyAIPipeline:
         self.app = app
         self.tasks = []
 
-    def add_task(self, task_type, data):
+    def add_task(self, task_type, data, **kwargs):
         """
         Add a task to the pipeline.
         :param task_type: 'generate_text', 'generate_image', or 'text_to_speech'
