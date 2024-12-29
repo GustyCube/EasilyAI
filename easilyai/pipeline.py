@@ -9,7 +9,15 @@ class EasilyAIPipeline:
         :param task_type: 'generate_text', 'generate_image', or 'text_to_speech'
         :param data: The input for the task (e.g., prompt or text).
         """
-        self.tasks.append({"type": task_type, "data": data})
+        if not kwargs:
+            self.tasks.append({"type": task_type, "data": data})
+        else:
+            task_data = dict()
+            task_data["data"] = data
+            for key, value in kwargs.items():
+                task_data[key] = value
+            self.tasks.append({"type": task_type, "data": task_data})
+        print(self.tasks)
 
     def run(self):
         """
