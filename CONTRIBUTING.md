@@ -3,6 +3,9 @@
 First off, thank you for considering contributing to EasilyAI! It's people like you that make this project truly great.
 
 ## How Can I Contribute?
+### What To Do
+
+You can find a list of items that need help [here](https://github.com/users/GustyCube/projects/3/views/1). 
 
 ### Reporting Bugs
 
