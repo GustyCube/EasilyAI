@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="EasilyAI",
-    version="0.1.7",
+    version="0.1.8",
     description="A library that simplifies the usage of AI!",
     author="GustyCube",
     author_email="gc@gustycube.xyz",
@@ -15,7 +15,8 @@ setup(
     install_requires=[
         "openai>=1.0.0",
         "requests>=2.0.0",
-        "google-generativeai>=0.8.3"
+        "google-generativeai>=0.8.3",
+        "anthropic>=0.42.0"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
