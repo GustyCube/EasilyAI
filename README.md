@@ -1,9 +1,12 @@
 <div align="center">
   <h1>EasilyAI</h1>
   <p>
+    <p align="center">
     <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/v/easilyai.svg" alt="PyPI"></a>
     <a href="tox.ini"><img src="https://img.shields.io/pypi/pyversions/easilyai" alt="Supported Python Versions"></a>
+    <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/dm/easilyai" alt="PyPI Downloads"></a>
     <a href="LICENSE"><img src="https://img.shields.io/github/license/GustyCube/EasilyAI" alt="License"></a>
+</p>
   </p>
 </div>
 
