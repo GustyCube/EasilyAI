@@ -8,21 +8,32 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Overview', link: '/markdown-examples' }
+      { text: 'Overview', link: '/overview' },
+      { text: 'Installation', link: '/installation' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Getting Started',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Overview', link: '/overview' },
+          { text: 'Installation', link: '/installation' },
+          { text: 'Error Handling', link: '/errorhandling' },
         ]
-      }
+      },
+      {
+        text: 'Guide',
+        items: [
+          { text: 'App Creation', link: '/appcreation' },
+          { text: 'Text To Speech', link: '/texttospeech' },
+          { text: 'Pipelines', link: '/pipelines' },
+          { text: 'Custom AI', link: '/customai' }
+        ]
+      },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/GustyCube/EasyAI' }
+      { icon: 'github', link: 'https://github.com/GustyCube/EasilyAI' }
     ]
   }
 })

@@ -13,4 +13,4 @@ pip install easyai
 - **API Key for OpenAI** *(optional if using OpenAI services)*
 - **Ollama Installation** for running local models.
 
-After installation, proceed to [Creating an AI App](./app-creation.md).
+After installation, proceed to [Creating an AI App](./appcreation.md).

@@ -33,7 +33,8 @@ class EasyAIApp:
         else:
             raise UnsupportedServiceError(
                 f"Unsupported service '{service}'! Use 'openai', 'ollama', or a registered custom service. "
-                "Refer to the Easy ::contentReference[oaicite:0]{index=0}")
+                "Refer to the EasyAI documentation for more information."
+            )
     
     def request(self, task_type, task):
         # Instead of checking if the task contains "image" or "speech", we should 

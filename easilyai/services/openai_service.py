@@ -26,23 +26,23 @@ class OpenAIService:
                 "Authentication failed! Please check your OpenAI API key and ensure it's correct. "
                 "Refer to the EasyAI documentation for more information."
             )
-        except openai.error.RateLimitError:
+        except openai.RateLimitError:
             raise RateLimitError(
                 "Rate limit exceeded! You've made too many requests in a short period. "
                 "Please wait and try again later. Refer to the EasyAI documentation for more information."
             )
-        except openai.error.InvalidRequestError as e:
+        except openai.InvalidRequestError as e:
             raise InvalidRequestError(
                 f"Invalid request! {str(e)}. Please check your request parameters. "
                 "Refer to the EasyAI documentation for more information."
             )
-        except openai.error.APIConnectionError:
+        except openai.APIConnectionError:
             raise APIConnectionError(
                 "Connection error! Unable to connect to OpenAI's API. "
                 "Please check your internet connection and try again. "
                 "Refer to the EasyAI documentation for more information."
             )
-        except openai.error.OpenAIError as e:
+        except openai.OpenAIError as e:
             raise ServerError(
                 f"An error occurred on OpenAI's side: {str(e)}. Please try again later. "
                 "Refer to the EasyAI documentation for more information."
