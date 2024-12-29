@@ -1,26 +1,45 @@
 import unittest
+from unittest.mock import patch
 from easilyai.services.openai_service import OpenAIService
 from easilyai.services.ollama_service import OllamaService
 
 class TestOpenAIService(unittest.TestCase):
-    def test_openai_init(self):
-        service = OpenAIService(apikey="fake_api_key", model="gpt-4")
-        self.assertEqual(service.model, "gpt-4")
+    """Unit tests for OpenAIService."""
 
-    def test_text_generation(self):
-        service = OpenAIService(apikey="fake_api_key", model="gpt-4")
+    def setUp(self):
+        self.service = OpenAIService(apikey="fake_api_key", model="gpt-4")
+
+    def test_openai_init(self):
+        self.assertEqual(self.service.model, "gpt-4")
+
+    @patch.object(OpenAIService, "generate_text", return_value="Mocked response")
+    def test_text_generation(self, mock_generate_text):
+        result = self.service.generate_text("Test prompt")
+        self.assertEqual(result, "Mocked response")
+
+    def test_text_generation_failure(self):
         with self.assertRaises(Exception):
-            service.generate_text("Test prompt")  # Without a real API key
+            self.service.generate_text("Test prompt")  # Without patching, it should fail with a real API call
+
 
 class TestOllamaService(unittest.TestCase):
+    """Unit tests for OllamaService."""
+
+    def setUp(self):
+        self.service = OllamaService(model="llama2")
+
     def test_ollama_init(self):
-        service = OllamaService(model="llama2")
-        self.assertEqual(service.model, "llama2")
-    
-    def test_text_generation(self):
-        service = OllamaService(model="llama2")
+        self.assertEqual(self.service.model, "llama2")
+
+    @patch.object(OllamaService, "generate_text", return_value="Mocked response")
+    def test_text_generation(self, mock_generate_text):
+        result = self.service.generate_text("Test prompt")
+        self.assertEqual(result, "Mocked response")
+
+    def test_text_generation_failure(self):
         with self.assertRaises(Exception):
-            service.generate_text("Test prompt")  # Ollama might not be running locally
+            self.service.generate_text("Test prompt")  # Without patching, it should fail
+
 
 if __name__ == "__main__":
     unittest.main()
