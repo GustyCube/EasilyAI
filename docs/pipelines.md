@@ -1,13 +1,13 @@
 # Pipeline Guide
 
 ## Overview
-Pipelines in EasyAI allow you to chain multiple tasks (e.g., text generation, image generation, and TTS) into a workflow.
+Pipelines in EasilyAI allow you to chain multiple tasks (e.g., text generation, image generation, and TTS) into a workflow.
 
 ## Example Pipeline
 
 ```python
 # Create a pipeline
-pipeline = easyai.EasyAIPipeline(app)
+pipeline = easyai.EasilyAIPipeline(app)
 
 # Add tasks
 pipeline.add_task("generate_text", "Write a poem about AI and nature.")
@@ -22,4 +22,4 @@ for task_result in results:
     print(f"Task: {task_result['task']}\nResult: {task_result['result']}\n")
 ```
 
-Discover how to extend EasyAI with [Custom AI Models](./customai.md).
+Discover how to extend EasilyAI with [Custom AI Models](./customai.md).

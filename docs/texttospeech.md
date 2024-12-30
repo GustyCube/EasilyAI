@@ -1,13 +1,13 @@
 # Text-to-Speech Guide
 
 ## Overview
-EasyAI supports OpenAI's Text-to-Speech API for converting text into audio files.
+EasilyAI supports OpenAI's Text-to-Speech API for converting text into audio files.
 
 ## Generate Speech with OpenAI
 
 ```python
 # Initialize a TTS App
-tts_app = easyai.create_tts_app(
+tts_app = easilyai.create_tts_app(
     name="tts_app",
     service="openai",
     apikey="YOUR_API_KEY",

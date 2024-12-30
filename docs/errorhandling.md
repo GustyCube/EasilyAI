@@ -1,7 +1,7 @@
 # Error Handling
 
 ## Overview
-EasyAI includes robust error handling with clear, emoji-coded messages for quick debugging.
+EasilyAI includes robust error handling with clear, emoji-coded messages for quick debugging.
 
 ### Common Errors
 - 🔐 **Missing API Key**: "No API key provided! Add your API key to initialize the service."
@@ -13,7 +13,7 @@ EasyAI includes robust error handling with clear, emoji-coded messages for quick
 
 ```python
 try:
-    app = easyai.create_app(name="example", service="openai")
+    app = easilyai.create_app(name="example", service="openai")
     app.request("Test request")
 except Exception as e:
     print(e)

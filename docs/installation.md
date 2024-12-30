@@ -2,10 +2,10 @@
 
 ## Installation
 
-To install the EasyAI library, use pip:
+To install the EasilyAI library, use pip:
 
 ```bash
-pip install easyai
+pip install easilyai
 ```
 
 ## Requirements

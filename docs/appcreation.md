@@ -1,18 +1,20 @@
 # App Creation
 
 ## Overview
-EasyAI allows you to initialize an AI app quickly and seamlessly using OpenAI or Ollama.
+EasilyAI allows you to initialize an AI app quickly and seamlessly using OpenAI or Ollama.
+
+EasilyAI supports many different services. You can view a full list here.  
 
 ## Creating an OpenAI App
 
 ```python
-import easyai
+import easilyai
 
-app = easyai.create_app(
+app = easilyai.create_app(
     name="my_ai_app",
     service="openai",
     apikey="YOUR_API_KEY",
-    model="gpt-4"
+    model="gpt-4o"
 )
 
 response = app.request("Tell me a joke about AI.")
@@ -24,7 +26,7 @@ print(response)
 For local models using Ollama:
 
 ```python
-app = easyai.create_app(
+app = easilyai.create_app(
     name="my_ai_app",
     service="ollama",
     model="llama2"

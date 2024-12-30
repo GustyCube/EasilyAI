@@ -9,7 +9,8 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Overview', link: '/overview' },
-      { text: 'Installation', link: '/installation' }
+      { text: 'Installation', link: '/installation' },
+      { text: 'Services', link: '/services' },
     ],
 
     sidebar: [
@@ -30,10 +31,22 @@ export default defineConfig({
           { text: 'Custom AI', link: '/customai' }
         ]
       },
+      {
+        text: 'Services',
+        link: '/services',
+        items: [
+          { text: 'OpenAI', link: '/openai' },
+          { text: 'Ollama', link: '/ollama' },
+          { text: 'Grok', link: '/grok' },
+          { text: 'Anthropic (Claude)', link: '/anthropic' },
+          { text: 'Hugging Face', link: '/huggingface' },
+        ]
+      },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/GustyCube/EasilyAI' }
+      { icon: 'github', link: 'https://github.com/GustyCube/EasilyAI' },
+      { icon: 'python', link: 'https://pypi.org/project/EasilyAI/'}
     ]
   }
 })

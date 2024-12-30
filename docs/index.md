@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "EasyAI "
+  name: "EasilyAI"
   text: "Simple AI Usage Python Library"
   tagline: Simplifying Usage of Libraries like Ollama or OpenAI
   actions:
