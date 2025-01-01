@@ -9,71 +9,63 @@ from easilyai.exceptions import UnsupportedServiceError, NotImplementedError
 _registered_custom_ais = {}
 
 class EasyAIApp:
-    def __init__(self, name, service, apikey=None, model=None, max_tokens = None):
+    def __init__(self, name, service, apikey=None, model=None, max_tokens=None):
         self.name = name
         self.service = service
         self.model = model
-        self.client = None
+        self.client = self._initialize_client(service, apikey, model, max_tokens)
 
-        if service == "openai":
-            self.client = OpenAIService(apikey, model)
-        elif service == "ollama":
-            self.client = OllamaService(model)
-        elif service == "gemini":
-            self.client = GeminiService(apikey, model)
-        elif service == "grok":
-            self.client = GrokService(apikey, model)
-        elif service == "anthropic":
-            if max_tokens:
-                self.client = AnthropicService(apikey,  model, max_tokens)
-            else:
-                self.client = AnthropicService(apikey, model)
+    def _initialize_client(self, service, apikey, model, max_tokens):
+        service_clients = {
+            "openai": OpenAIService(apikey, model),
+            "ollama": OllamaService(model),
+            "gemini": GeminiService(apikey, model),
+            "grok": GrokService(apikey, model),
+            "anthropic": AnthropicService(apikey, model, max_tokens) if max_tokens else AnthropicService(apikey, model)
+        }
+        if service in service_clients:
+            return service_clients[service]
         elif service in _registered_custom_ais:
-            self.client = _registered_custom_ais[service](model, apikey)
+            return _registered_custom_ais[service](model, apikey)
         else:
             raise UnsupportedServiceError(
                 f"Unsupported service '{service}'! Use 'openai', 'ollama', or a registered custom service. "
                 "Refer to the EasyAI documentation for more information."
             )
-    
+
     def request(self, task_type, task):
-        # Instead of checking if the task contains "image" or "speech", we should 
-        # check if the task_type is "generate_image" or "text_to_speech"
-        if task_type == "generate_text":
-            # If the task is a dictionary, it contains both prompt and image_url
-            # Currently, should only work with Grok, but need to add support for other services
-            if isinstance(task, dict):
-                prompt = task["data"]
-                img_url = task.get("image_url")
-                return self.client.generate_text(prompt, img_url)
-            else:
-                # If the task is a string, it contains only the prompt, works for all services
-                return self.client.generate_text(task)
-        elif task_type == "generate_image":
-            return self.client.generate_image(task)
-        elif task_type == "text_to_speech":
-            return self.client.text_to_speech(task)
+        task_methods = {
+            "generate_text": self._generate_text,
+            "generate_image": self.client.generate_image,
+            "text_to_speech": self.client.text_to_speech
+        }
+        if task_type in task_methods:
+            return task_methods[task_type](task)
         else:
             raise ValueError(f"Unsupported task type: {task_type}")
+
+    def _generate_text(self, task):
+        if isinstance(task, dict):
+            return self.client.generate_text(task["data"], task.get("image_url"))
+        return self.client.generate_text(task)
+
 
 class EasyAITTSApp:
     def __init__(self, name, service, apikey=None, model=None):
         self.name = name
         self.service = service
         self.model = model
-        self.client = None
+        self.client = self._initialize_client(service, apikey, model)
 
+    def _initialize_client(self, service, apikey, model):
         if service == "openai":
-            self.client = OpenAIService(apikey, model)
+            return OpenAIService(apikey, model)
         elif service in _registered_custom_ais:
-            self.client = _registered_custom_ais[service](model, apikey)
+            return _registered_custom_ais[service](model, apikey)
         else:
             raise ValueError("Unsupported service for TTS. Use 'openai' or a registered custom service.")
-    
+
     def request_tts(self, text, tts_model="tts-1", voice="onyx", output_file="output.mp3"):
-        """
-        Convert text to speech using the selected service.
-        """
         if hasattr(self.client, "text_to_speech"):
             return self.client.text_to_speech(text, tts_model=tts_model, voice=voice, output_file=output_file)
         else:
