@@ -1,7 +1,7 @@
 import requests
 from easilyai.exceptions import (
     APIConnectionError, InvalidRequestError, NotFoundError,
-    ServerError, MissingAPIKeyError, NotImplementedError
+    ServerError, NotImplementedError
 )
 
 class OllamaService:
