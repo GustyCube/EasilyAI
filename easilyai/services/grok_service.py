@@ -6,7 +6,6 @@ from easilyai.exceptions import (
     RateLimitError,
     InvalidRequestError,
     APIConnectionError,
-    NotFoundError,
     ServerError,
     MissingAPIKeyError,
 )
