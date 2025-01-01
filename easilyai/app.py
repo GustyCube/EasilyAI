@@ -3,7 +3,6 @@ from easilyai.services.ollama_service import OllamaService
 from easilyai.services.gemini_service import GeminiService
 from easilyai.services.grok_service import GrokService
 from easilyai.services.anthropic_service import AnthropicService
-from easilyai.custom_ai import CustomAIService
 from easilyai.exceptions import UnsupportedServiceError, NotImplementedError
 
 _registered_custom_ais = {}
