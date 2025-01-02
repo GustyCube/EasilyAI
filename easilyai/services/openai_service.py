@@ -1,7 +1,7 @@
 import openai
 from easilyai.exceptions import (
     AuthenticationError, RateLimitError, InvalidRequestError,
-    APIConnectionError, NotFoundError, ServerError, MissingAPIKeyError
+    APIConnectionError, ServerError, MissingAPIKeyError
 )
 
 class OpenAIService:
