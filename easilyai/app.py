@@ -3,6 +3,7 @@ from easilyai.services.ollama_service import OllamaService
 from easilyai.services.gemini_service import GeminiService
 from easilyai.services.grok_service import GrokService
 from easilyai.services.anthropic_service import AnthropicService
+from easilyai.services.huggingface_service import HuggingFaceService
 from easilyai.custom_ai import CustomAIService
 from easilyai.exceptions import UnsupportedServiceError, NotImplementedError
 
@@ -28,11 +29,13 @@ class EasyAIApp:
                 self.client = AnthropicService(apikey,  model, max_tokens)
             else:
                 self.client = AnthropicService(apikey, model)
+        elif service == "huggingface":
+            self.client = HuggingFaceService(apikey, model)
         elif service in _registered_custom_ais:
             self.client = _registered_custom_ais[service](model, apikey)
         else:
             raise UnsupportedServiceError(
-                f"Unsupported service '{service}'! Use 'openai', 'ollama', or a registered custom service. "
+                f"Unsupported service '{service}'! Use 'openai', 'ollama', 'huggingface', or a registered custom service. "
                 "Refer to the EasyAI documentation for more information."
             )
     
