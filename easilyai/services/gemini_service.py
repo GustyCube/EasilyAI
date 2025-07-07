@@ -1,4 +1,5 @@
 import google.generativeai as googleai
+from google.api_core import exceptions as google_exceptions
 from easilyai.exceptions import (
     AuthenticationError, RateLimitError, InvalidRequestError,
     APIConnectionError, NotFoundError, ServerError, MissingAPIKeyError
@@ -22,7 +23,38 @@ class GeminiService:
         try:
             response = self.model.generate_content(prompt)
             return response.text
+        except google_exceptions.Unauthenticated:
+            raise AuthenticationError(
+                "Authentication failed! Please check your Gemini API key and ensure it's correct. "
+                "Refer to the EasilyAI documentation for more information."
+            )
+        except google_exceptions.ResourceExhausted:
+            raise RateLimitError(
+                "Rate limit exceeded! You've made too many requests in a short period. "
+                "Please wait and try again later. Refer to the EasilyAI documentation for more information."
+            )
+        except google_exceptions.InvalidArgument as e:
+            raise InvalidRequestError(
+                f"Invalid request! {str(e)}. Please check your request parameters. "
+                "Refer to the EasilyAI documentation for more information."
+            )
+        except google_exceptions.DeadlineExceeded:
+            raise APIConnectionError(
+                "Request timeout! The request took too long to complete. "
+                "Please try again later. Refer to the EasilyAI documentation for more information."
+            )
+        except google_exceptions.NotFound:
+            raise NotFoundError(
+                "Model not found! Please check your model name and ensure it's correct. "
+                "Refer to the EasilyAI documentation for more information."
+            )
+        except google_exceptions.GoogleAPIError as e:
+            raise ServerError(
+                f"An error occurred on Google's side: {str(e)}. Please try again later. "
+                "Refer to the EasilyAI documentation for more information."
+            )
         except Exception as e:
             raise ServerError(
-                f"Unknown error occurred! Please try again later or look at the EasilyAI Docs. Error: {e}"
+                f"An unexpected error occurred: {str(e)}. Please try again later. "
+                "Refer to the EasilyAI documentation for more information."
             )
