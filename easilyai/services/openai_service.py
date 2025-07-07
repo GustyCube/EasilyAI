@@ -1,3 +1,5 @@
+import os
+import base64
 import openai
 from openai import OpenAI
 from easilyai.exceptions import (
@@ -16,11 +18,34 @@ class OpenAIService:
         self.client = OpenAI(api_key=apikey)
         self.model = model
 
-    def generate_text(self, prompt):
+    def encode_image(self, img_url):
+        """Encodes an image file into Base64 format if it's a local file."""
+        if os.path.exists(img_url):  # Check if it's a local file
+            with open(img_url, "rb") as f:
+                encoded_string = base64.b64encode(f.read()).decode("utf-8")
+            return f"data:image/jpeg;base64,{encoded_string}"
+        return img_url  # Assume it's already a URL if the file doesn't exist locally
+
+    def generate_text(self, prompt, img_url=None):
         try:
+            # Prepare messages for vision or text-only
+            if img_url:
+                encoded_img = self.encode_image(img_url)
+                messages = [
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "image_url", "image_url": {"url": encoded_img, "detail": "high"}},
+                            {"type": "text", "text": prompt},
+                        ],
+                    }
+                ]
+            else:
+                messages = [{"role": "user", "content": prompt}]
+            
             response = self.client.chat.completions.create(
                 model=self.model,
-                messages=[{"role": "user", "content": prompt}]
+                messages=messages
             )
             return response.choices[0].message.content
         except openai.AuthenticationError:

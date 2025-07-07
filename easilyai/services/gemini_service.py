@@ -1,3 +1,5 @@
+import os
+import pathlib
 import google.generativeai as googleai
 from google.api_core import exceptions as google_exceptions
 from easilyai.exceptions import (
@@ -19,9 +21,39 @@ class GeminiService:
         self.full_model_name = model  # Full name (e.g., "models/gemini-1")
         self.model = googleai.GenerativeModel(self.full_model_name)
 
-    def generate_text(self, prompt):
+    def prepare_image(self, img_url):
+        """Prepare image for Gemini API - handles both local files and URLs."""
+        if os.path.exists(img_url):  # Local file
+            image_data = pathlib.Path(img_url).read_bytes()
+            # Determine mime type based on file extension
+            if img_url.lower().endswith('.png'):
+                mime_type = 'image/png'
+            elif img_url.lower().endswith('.jpg') or img_url.lower().endswith('.jpeg'):
+                mime_type = 'image/jpeg'
+            elif img_url.lower().endswith('.gif'):
+                mime_type = 'image/gif'
+            elif img_url.lower().endswith('.webp'):
+                mime_type = 'image/webp'
+            else:
+                mime_type = 'image/jpeg'  # Default fallback
+            
+            return {
+                'mime_type': mime_type,
+                'data': image_data
+            }
+        else:
+            # Assume it's a URL - Gemini can handle URLs directly
+            return img_url
+
+    def generate_text(self, prompt, img_url=None):
         try:
-            response = self.model.generate_content(prompt)
+            if img_url:
+                # Vision mode - include image with prompt
+                image_data = self.prepare_image(img_url)
+                response = self.model.generate_content([prompt, image_data])
+            else:
+                # Text-only mode
+                response = self.model.generate_content(prompt)
             return response.text
         except google_exceptions.Unauthenticated:
             raise AuthenticationError(
