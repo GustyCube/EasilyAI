@@ -73,13 +73,13 @@ class AnthropicService:
             )
             # Extract the text content
             return response.content[0].text
-        except anthropic.errors.AuthenticationError:
+        except anthropic.AuthenticationError:
             raise AuthenticationError("Invalid API key. Please check your Anthropic API key.")
-        except anthropic.errors.RateLimitError:
+        except anthropic.RateLimitError:
             raise RateLimitError("Rate limit exceeded. Please wait and try again later.")
-        except anthropic.errors.InvalidRequestError as e:
+        except anthropic.BadRequestError as e:
             raise InvalidRequestError(f"Invalid request: {str(e)}. Check your parameters.")
-        except anthropic.errors.APIConnectionError:
+        except anthropic.APIConnectionError:
             raise APIConnectionError("Unable to connect to Anthropic API. Check your network.")
         except Exception as e:
             raise ServerError(

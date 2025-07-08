@@ -52,7 +52,7 @@ class TaskResult:
 @dataclass
 class PipelineTask:
     """Enhanced pipeline task with advanced features."""
-    id: str
+    task_id: str
     app: Any  # EasyAIApp instance
     task_type: str
     prompt: str
@@ -62,6 +62,12 @@ class PipelineTask:
     timeout: Optional[float] = None
     parallel_group: Optional[str] = None
     kwargs: Dict[str, Any] = field(default_factory=dict)
+    status: TaskStatus = TaskStatus.PENDING
+    
+    @property
+    def id(self) -> str:
+        """Backward compatibility property."""
+        return self.task_id
 
 
 class EnhancedPipeline:
@@ -116,7 +122,7 @@ class EnhancedPipeline:
             **kwargs: Additional task parameters
         """
         task = PipelineTask(
-            id=task_id,
+            task_id=task_id,
             app=app,
             task_type=task_type,
             prompt=prompt,
@@ -129,6 +135,7 @@ class EnhancedPipeline:
         )
         
         self.tasks[task_id] = task
+        return task_id
     
     def set_variable(self, name: str, value: Any):
         """Set a pipeline variable."""
@@ -240,7 +247,7 @@ class EnhancedPipeline:
         # Check condition
         if task.condition and not task.condition(self.results):
             result = TaskResult(
-                task_id=task.id,
+                task_id=task.task_id,
                 status=TaskStatus.SKIPPED,
                 duration=time.time() - start_time,
                 metadata={"reason": "condition_not_met"}
@@ -274,7 +281,7 @@ class EnhancedPipeline:
                 
                 # Success
                 result = TaskResult(
-                    task_id=task.id,
+                    task_id=task.task_id,
                     status=TaskStatus.COMPLETED,
                     result=response,
                     duration=time.time() - start_time,
@@ -288,7 +295,7 @@ class EnhancedPipeline:
                 
             except Exception as e:
                 last_error = str(e)
-                logger.warning(f"Task {task.id} failed on attempt {attempt + 1}: {e}")
+                logger.warning(f"Task {task.task_id} failed on attempt {attempt + 1}: {e}")
                 
                 if self.on_task_error:
                     self.on_task_error(task, e)
@@ -299,7 +306,7 @@ class EnhancedPipeline:
         
         # All attempts failed
         result = TaskResult(
-            task_id=task.id,
+            task_id=task.task_id,
             status=TaskStatus.FAILED,
             error=last_error,
             duration=time.time() - start_time,
