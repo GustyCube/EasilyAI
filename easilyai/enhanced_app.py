@@ -7,7 +7,7 @@ advanced features without requiring users to manually configure them.
 """
 
 import time
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 from .app import EasyAIApp, create_app as _create_app
 from .config import get_config, EasilyAIConfig
 from .cache import get_cache
