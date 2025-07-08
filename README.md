@@ -103,7 +103,7 @@ results = pipeline.run()
 
 For comprehensive guides, API reference, and advanced usage examples, visit our documentation:
 
-**[📖 View Full Documentation →](https://gustycube.github.io/EasilyAI/overview.html)**
+**[📖 View Full Documentation →](https://gustycube.github.io/EasilyAI/)**
 
 ## 🤝 Contributing
 
