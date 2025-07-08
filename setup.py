@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="EasilyAI",
-    version="0.2.2",
+    version="0.3.0",
     description="A library that simplifies the usage of AI!",
     author="GustyCube",
     author_email="gc@gustycube.xyz",
