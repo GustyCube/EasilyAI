@@ -1,198 +1,121 @@
 <div align="center">
   <h1>EasilyAI</h1>
+  <p><em>A unified Python library for AI services</em></p>
+  
   <p>
-    <p align="center">
-    <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/v/easilyai.svg" alt="PyPI"></a>
-    <a href="tox.ini"><img src="https://img.shields.io/pypi/pyversions/easilyai" alt="Supported Python Versions"></a>
-    <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/dm/easilyai" alt="PyPI Downloads"></a>
-    <a href="LICENSE"><img src="https://img.shields.io/github/license/GustyCube/EasilyAI" alt="License"></a>
-    <a href="https://app.deepsource.com/gh/GustyCube/EasilyAI/">
-    <img src="https://app.deepsource.com/gh/GustyCube/EasilyAI.svg/?label=code+coverage&show_trend=true&token=Vidoy6h5_sKpG-0YdVA_ISy_"alt="DeepSource</a>
-    <a href="https://github.com/gustycube/EasilyAI/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/gustycube/easilyai.svg" alt="Contributors">
-</a>
-
-</p>
+    <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/v/easilyai?style=flat-square&color=blue" alt="PyPI Version"></a>
+    <a href="https://github.com/GustyCube/EasilyAI/actions/workflows/python-publish.yml"><img src="https://img.shields.io/github/actions/workflow/status/GustyCube/EasilyAI/python-publish.yml?style=flat-square&label=CI%2FCD" alt="CI/CD Status"></a>
+    <a href="https://github.com/GustyCube/EasilyAI/actions/workflows/docs.yml"><img src="https://img.shields.io/github/actions/workflow/status/GustyCube/EasilyAI/docs.yml?style=flat-square&label=docs" alt="Docs Status"></a>
+    <a href="https://app.deepsource.com/gh/GustyCube/EasilyAI/"><img src="https://app.deepsource.com/gh/GustyCube/EasilyAI.svg/?label=code+coverage&show_trend=true&token=Vidoy6h5_sKpG-0YdVA_ISy_&style=flat-square" alt="Code Coverage"></a>
+    <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/dm/easilyai?style=flat-square&color=green" alt="Downloads"></a>
+    <a href="https://pypi.org/project/easilyai"><img src="https://img.shields.io/pypi/pyversions/easilyai?style=flat-square" alt="Python Versions"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/GustyCube/EasilyAI?style=flat-square" alt="License"></a>
+    <a href="https://github.com/GustyCube/EasilyAI/graphs/contributors"><img src="https://img.shields.io/github/contributors/GustyCube/EasilyAI?style=flat-square" alt="Contributors"></a>
   </p>
 </div>
 
-**EasilyAI** is a Python library that simplifies AI app development by integrating popular AI services like **OpenAI** and **Ollama**. It provides a clean, unified interface for text generation, image generation, and text-to-speech (TTS) tasks.
+## Overview
+
+**EasilyAI** is a powerful Python library that simplifies AI application development by providing a unified interface for multiple AI services including **OpenAI**, **Anthropic**, **Google Gemini**, **X.AI Grok**, and **Ollama**. Whether you need text generation, image creation, or text-to-speech functionality, EasilyAI offers a consistent API that makes switching between providers effortless.
 
 ---
 
-## Features
-- **App Creation**: Simplify initializing AI services like OpenAI and Ollama.
-- **Text-to-Speech**: Convert text to speech with OpenAI's TTS API (with voice selection).
-- **Custom AI Support**: Integrate and register custom AI models.
-- **Unified Request Handling**: Automatically determine task types like text, image, or TTS requests.
-- **Pipeline Support**: Chain multiple tasks into a seamless workflow.
+## 🚀 Key Features
+
+- **🔄 Multi-Provider Support**: Seamlessly switch between OpenAI, Anthropic, Google Gemini, X.AI Grok, and Ollama
+- **📝 Text Generation**: Advanced language models for chat, completion, and creative writing
+- **🎨 Image Generation**: Create stunning visuals with DALL-E and other image models
+- **🗣️ Text-to-Speech**: High-quality voice synthesis with multiple voice options
+- **🔗 Pipeline System**: Chain multiple AI operations into powerful workflows
+- **🛠️ Custom AI Integration**: Easily extend with your own AI services
+- **⚡ Unified API**: One consistent interface for all providers and tasks
+- **🎯 Auto Task Detection**: Intelligent request routing based on content type
 
 ---
 
-## Installation
-
-Install the library via pip:
+## 📦 Installation
 
 ```bash
 pip install easilyai
 ```
 
----
+## 🚀 Quick Start
 
-## Quick Start
+Get up and running in minutes with these simple examples:
 
-### 1. Create an AI App
-
-Create an app for OpenAI:
-
+### Basic Text Generation
 ```python
 import easilyai
 
-# Initialize an OpenAI App
+# Create an app with your preferred provider
 app = easilyai.create_app(
     name="my_ai_app",
-    service="openai",
-    apikey="YOUR_OPENAI_API_KEY",
+    service="openai",  # or "anthropic", "gemini", "grok", "ollama"
+    apikey="YOUR_API_KEY",
     model="gpt-4"
 )
 
-# Make a request
-response = app.request("Tell me a joke about AI.")
+# Generate text
+response = app.request("Explain quantum computing in simple terms")
 print(response)
 ```
 
----
-
-### 2. Generate Text-to-Speech
-
-Create a dedicated TTS app and specify the model and voice:
-
+### Text-to-Speech
 ```python
-# Initialize a TTS App
+# Create a TTS app
 tts_app = easilyai.create_tts_app(
     name="my_tts_app",
     service="openai",
-    apikey="YOUR_OPENAI_API_KEY",
+    apikey="YOUR_API_KEY",
     model="tts-1"
 )
 
 # Convert text to speech
-output_file = tts_app.request_tts(
-    text="Hello, I am your AI assistant!",
-    tts_model="tts-1",
+tts_app.request_tts(
+    text="Hello from EasilyAI!",
     voice="onyx",
-    output_file="hello_ai.mp3"
+    output_file="greeting.mp3"
 )
-print(f"TTS output saved to: {output_file}")
 ```
 
----
-
-### 3. Use Pipelines
-
-Chain multiple tasks (text generation, image generation, and TTS):
-
+### AI Pipeline
 ```python
-# Create a pipeline
+# Chain multiple AI operations
 pipeline = easilyai.EasilyAIPipeline(app)
+pipeline.add_task("generate_text", "Write a haiku about coding")
+pipeline.add_task("generate_image", "A serene coding environment")
 
-# Add tasks
-pipeline.add_task("generate_text", "Write a poem about AI and nature.")
-pipeline.add_task("generate_image", "A futuristic city with flying cars.")
-pipeline.add_task("text_to_speech", "Here is a talking car in a futuristic world!")
-
-# Run the pipeline
 results = pipeline.run()
-
-# Print results
-for task_result in results:
-    print(f"Task: {task_result['task']}\nResult: {task_result['result']}\n")
 ```
 
----
+## 🛠️ Supported AI Providers
 
-### 4. Register Custom AI Services
+| Provider | Text Generation | Image Generation | Text-to-Speech |
+|----------|:---------------:|:----------------:|:--------------:|
+| **OpenAI** | ✅ | ✅ | ✅ |
+| **Anthropic** | ✅ | ❌ | ❌ |
+| **Google Gemini** | ✅ | ❌ | ❌ |
+| **X.AI Grok** | ✅ | ❌ | ❌ |
+| **Ollama** | ✅ | ❌ | ❌ |
+| **Custom AI** | ✅ | ✅ | ✅ |
 
-Integrate your own AI models into EasilyAI:
+## 📚 Documentation
 
-```python
-from easilyai.custom_ai import CustomAIService, register_custom_ai
+For comprehensive guides, API reference, and advanced usage examples, visit our documentation:
 
-# Define a custom AI service
-class MyCustomAI(CustomAIService):
-    def generate_text(self, prompt):
-        return f"Custom AI response for: {prompt}"
+**[📖 View Full Documentation →](https://gustycube.github.io/EasilyAI/overview.html)**
 
-    def text_to_speech(self, text, **kwargs):
-        return f"Custom TTS Output: {text}"
+## 🤝 Contributing
 
-# Register the custom AI
-register_custom_ai("my_custom_ai", MyCustomAI)
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
-# Use the custom AI
-custom_app = easilyai.create_app(name="custom_app", service="my_custom_ai", model="v1")
-print(custom_app.request("What is 2 + 2?"))
-```
+## 📄 License
 
----
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Supported Services
+## 🔗 Links
 
-1. **OpenAI**
-   - Text Generation (ChatGPT models like `gpt-4o`)
-   - Image Generation (`dall-e-3`)
-   - Text-to-Speech (`tts-1`, voices: `onyx`, `alloy`, etc.)
-
-2. **Ollama**
-   - Local LLM text generation (e.g., `llama3.1`).
-
-3. **Custom AI**
-   - Extend functionality by registering your own AI services.
-
----
-
-## Error Handling
-
-EasilyAI includes robust error handling with informative, emoji-coded messages.
-
-Examples:
-- 🔐 **Missing API Key**: "No API key provided! Add your API key to initialize the service."
-- 🚫 **Invalid Request**: "The request is invalid. Please check your inputs."
-- 🌐 **Connection Error**: "Unable to connect to the API. Ensure the server is running."
-- ⏳ **Rate Limit Exceeded**: "Too many requests! Wait and try again."
-
----
-
-## Future Features
-
-- Full support for additional TTS providers.
-- Model-specific optimizations.
-- Enhanced CLI tools for developers.
-
----
-
-## Contributing
-
-Contributions are welcome! To contribute:
-1. Fork the repository.
-2. Create a new branch.
-3. Submit a pull request with detailed changes.
-
----
-
-## License
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
----
-
-## Links
-
-- Documentation: [coming soon]
-- GitHub Repository: https://github.com/GustyCube/EasilyAI
-
----
-
-## Contact
-
-For questions, bugs, or feature requests, please reach out to **GustyCube** at **gc@gustycube.xyz**.
+- **Documentation**: https://gustycube.github.io/EasilyAI/overview.html
+- **PyPI Package**: https://pypi.org/project/easilyai
+- **GitHub Repository**: https://github.com/GustyCube/EasilyAI
+- **Issues & Support**: https://github.com/GustyCube/EasilyAI/issues
