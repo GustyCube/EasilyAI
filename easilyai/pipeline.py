@@ -1,4 +1,16 @@
 class EasilyAIPipeline:
+    """
+    Basic pipeline for sequential task execution.
+    
+    WARNING: This is the legacy pipeline implementation. 
+    For new projects, consider using EnhancedPipeline which provides:
+    - Better error handling
+    - Parallel execution support
+    - Variable substitution
+    - Conditional task execution
+    
+    This class is maintained for backward compatibility.
+    """
     def __init__(self, app):
         self.app = app
         self.tasks = []

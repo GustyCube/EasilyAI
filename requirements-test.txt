@@ -1,0 +1,22 @@
+# Testing dependencies for EasilyAI
+# Install with: pip install -r requirements-test.txt
+
+# Core testing framework
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.11.0
+pytest-xdist>=3.3.0
+coverage>=7.3.0
+
+# Mocking and test utilities
+responses>=0.23.0
+freezegun>=1.2.2
+factory-boy>=3.3.0
+faker>=19.3.0
+
+# Environment management for tests
+python-dotenv>=1.0.0
+
+# Performance testing
+pytest-benchmark>=4.0.0

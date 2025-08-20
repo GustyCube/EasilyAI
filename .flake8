@@ -1,0 +1,27 @@
+[flake8]
+max-line-length = 100
+max-complexity = 10
+extend-ignore = 
+    E203,  # whitespace before ':' (conflicts with black)
+    E501,  # line too long (handled by black)
+    W503,  # line break before binary operator (conflicts with black)
+    W504,  # line break after binary operator (conflicts with black)
+exclude = 
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    build,
+    dist,
+    *.egg-info,
+    .pytest_cache,
+    .mypy_cache,
+    .ruff_cache,
+    htmlcov,
+    easilyai/_version.py
+per-file-ignores =
+    __init__.py:F401,F403
+    tests/*:F401,F403,F811
+statistics = True
+count = True
+show-source = True

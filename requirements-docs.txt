@@ -1,0 +1,19 @@
+# Documentation dependencies for EasilyAI
+# Install with: pip install -r requirements-docs.txt
+
+# Core documentation tools
+mkdocs>=1.5.0
+mkdocs-material>=9.2.0
+mkdocstrings[python]>=0.22.0
+mkdocs-autorefs>=0.5.0
+
+# Optional documentation enhancements
+mkdocs-mermaid2-plugin>=1.1.0
+mkdocs-git-revision-date-localized-plugin>=1.2.0
+mkdocs-minify-plugin>=0.7.0
+mkdocs-redirects>=1.2.0
+
+# Dependencies for API reference generation
+griffe>=0.35.0
+markdown>=3.4.0
+pymdown-extensions>=10.0.0

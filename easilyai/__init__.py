@@ -118,7 +118,7 @@ if _core_available:
         "create_app",
         "create_tts_app", 
         "register_custom_ai",
-        "EasilyAIPipeline"
+        "EasilyAIPipeline"  # Basic pipeline - use EnhancedPipeline for new projects
     ])
 
 if _enhanced_available:
@@ -131,7 +131,7 @@ if _enhanced_available:
 
 if _enhanced_pipeline_available:
     __all__.extend([
-        "EnhancedPipeline",
+        "EnhancedPipeline",  # Recommended pipeline implementation
         "PipelineTemplate",
         "TaskStatus", 
         "ExecutionMode"

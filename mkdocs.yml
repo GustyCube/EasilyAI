@@ -1,0 +1,134 @@
+site_name: EasilyAI Documentation
+site_description: A unified Python library for AI services
+site_author: GustyCube
+site_url: https://gustycube.github.io/EasilyAI/
+repo_name: GustyCube/EasilyAI
+repo_url: https://github.com/GustyCube/EasilyAI
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+            show_root_toc_entry: true
+            show_signature_annotations: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            docstring_style: google
+            merge_init_into_class: true
+            separate_signature: true
+  - autorefs
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+    - Configuration: getting-started/configuration.md
+  - User Guide:
+    - Basic Usage: guide/basic-usage.md
+    - Services:
+      - OpenAI: guide/services/openai.md
+      - Anthropic: guide/services/anthropic.md
+      - Google Gemini: guide/services/gemini.md
+      - Groq: guide/services/groq.md
+      - Custom AI: guide/services/custom.md
+    - Advanced Features:
+      - Pipelines: guide/advanced/pipelines.md
+      - Batch Processing: guide/advanced/batch.md
+      - Enhanced App: guide/advanced/enhanced-app.md
+      - Error Handling: guide/advanced/error-handling.md
+  - API Reference:
+    - Overview: api/overview.md
+    - Services:
+      - OpenAI Service: api/services/openai.md
+      - Anthropic Service: api/services/anthropic.md
+      - Gemini Service: api/services/gemini.md
+      - Groq Service: api/services/groq.md
+    - Core:
+      - App Creation: api/core/app.md
+      - Pipeline: api/core/pipeline.md
+      - Batch Processing: api/core/batch.md
+    - Utilities:
+      - Utils: api/utils.md
+      - Exceptions: api/exceptions.md
+  - Development:
+    - Contributing: development/contributing.md
+    - Code of Conduct: development/code-of-conduct.md
+    - Testing: development/testing.md
+    - Release Process: development/release.md
+  - Examples:
+    - Chat Application: examples/chat.md
+    - Content Generation: examples/content.md
+    - Multi-Model Comparison: examples/comparison.md
+    - Custom Integration: examples/custom.md
+  - Changelog: changelog.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/GustyCube/EasilyAI
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/easilyai/
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX  # Replace with actual Google Analytics ID
+
+copyright: Copyright &copy; 2024 GustyCube - Apache 2.0 License
